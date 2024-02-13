@@ -142,9 +142,10 @@ load-module module-native-protocol-unix
 .include /etc/pulse/default.pa.d
 
 ### Desativa a troca automática de perfis de saída
-unload-module module-switch-on-port-available
+#unload-module module-switch-on-port-available
 load-module module-echo-cancel aec_method=webrtc sink_properties=device.description="Noise_Reduction" aec_args="analog_gain_control=0\ digital_gain_control=0"
 set-default-source alsa_input.pci-0000_05_00.6.analog-stereo.echo-cancel
 set-default-sink alsa_input.pci-0000_05_00.6.analog-stereo.echo-cancel
 set-source-mute alsa_input.pci-0000_05_00.6.analog-stereo 0
-set-sink-mute 0 false
+set-sink-mute alsa_output.pci-0000_05_00.6.analog-stereo 0
+unload-module 1
